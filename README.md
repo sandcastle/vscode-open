@@ -19,4 +19,10 @@ The extension can also be executed on demand
 - **Mac**: <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
 - **Windows**: <kbd>Command</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
 
+
+## Roadmap
+
+- Add support for selecting browser (feel free to send PR)
+
+
 Have fun! :beers:

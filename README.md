@@ -16,7 +16,7 @@ Simply pick the `open` extension from the list.
 
 The extension can also be executed on demand
 
-- **Mac**: Control + Alt + O
-- **Windows**: Command + Alt + O
+- **Mac**: <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
+- **Windows**: <kbd>Command</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
 
 Have fun! :beers:

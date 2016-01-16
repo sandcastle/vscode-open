@@ -1,0 +1,22 @@
+# vscode-open
+
+> Opens files using the OS's default program for the file type
+
+
+## Install
+
+Press <kbd>F1</kbd> and narrow down the list commands by typing `extension`. Pick `Extensions: Install Extension`.
+
+Simply pick the `open` extension from the list.
+
+
+## Usage
+
+#### Open Shortcut
+
+The extension can also be executed on demand
+
+- **Mac**: Control + Alt + O
+- **Windows**: Command + Alt + O
+
+Have fun! :beers:

@@ -1,0 +1,59 @@
+{
+  "name": "vscode-open",
+  "displayName": "Open",
+  "description": "Opens the current file with the default for the OS",
+  "version": "0.0.1",
+  "icon": "open.png",
+  "publisher": "sandcastle",
+  "engines": {
+    "vscode": "^0.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sandcastle/vscode-open"
+  },
+  "keywords": [
+    "open",
+    "load",
+    "file",
+    "browser",
+    "display"
+  ],
+  "homepage": "https://github.com/sandcastle/vscode-open",
+  "bugs": {
+    "url": "https://github.com/sandcastle/vscode-open/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.open",
+        "title": "Open"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.open",
+        "key": "ctrl+alt+o",
+        "mac": "cmd+alt+o"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^1.6.2",
+    "vscode": "0.10.x"
+  },
+  "dependencies": {
+    "open": "0.0.5"
+  }
+}

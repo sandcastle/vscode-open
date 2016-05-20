@@ -18,8 +18,6 @@ class OpenController {
 
   constructor() {
 
-    console.log('OpenController');
-
     let subscriptions: vscode.Disposable[] = [];
     let disposable = vscode.commands.registerCommand('extension.open', () => {
       this.openNow();
@@ -42,7 +40,7 @@ class OpenController {
     }
 
     try {
-      open(editor.document.uri.toString());
+      open(decodeURIComponent(editor.document.uri.toString()));
     }
     catch (error) {
       vscode.window.showInformationMessage('Couldn\'t open file.');

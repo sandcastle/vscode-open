@@ -54,6 +54,6 @@
     "vscode": "0.10.x"
   },
   "dependencies": {
-    "open": "0.0.5"
+    "opn": "^4.0.2"
   }
 }

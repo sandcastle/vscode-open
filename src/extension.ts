@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-const open = require('open');
+const opn = require('opn');
 
 /**
  * Activates the extension.
@@ -40,7 +40,7 @@ class OpenController {
     }
 
     try {
-      open(decodeURIComponent(editor.document.uri.toString()));
+      opn(decodeURIComponent(editor.document.uri.toString()));
     }
     catch (error) {
       vscode.window.showInformationMessage('Couldn\'t open file.');

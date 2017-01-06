@@ -34,9 +34,17 @@
     "commands": [
       {
         "command": "extension.open",
-        "title": "Open"
+        "title": "Open with default application"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.open",
+          "group": "navigation"
+        }
+      ]
+    },
     "keybindings": [
       {
         "command": "extension.open",

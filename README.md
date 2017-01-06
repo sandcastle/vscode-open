@@ -19,6 +19,8 @@ The extension can also be executed on demand
 - **Mac**: <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
 - **Windows**: <kbd>Command</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd>
 
+The command could also be found in the command palette (named `Open with default application`), or on the contextual menu in the file explorer.
+
 
 ## Roadmap
 

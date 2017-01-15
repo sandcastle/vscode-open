@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-const open = require('open');
+const opn = require('opn');
 
 /**
  * Activates the extension.
@@ -19,8 +19,8 @@ class OpenController {
   constructor() {
 
     let subscriptions: vscode.Disposable[] = [];
-    let disposable = vscode.commands.registerCommand('extension.open', () => {
-      this.openNow();
+    let disposable = vscode.commands.registerCommand('extension.open', (uri: vscode.Uri) => {
+      this.openNow(uri);
     });
     subscriptions.push(disposable);
 
@@ -31,16 +31,18 @@ class OpenController {
     this._disposable.dispose();
   }
 
-  openNow(){
-
-    let editor = vscode.window.activeTextEditor;
-    if (!editor || !editor.document.uri) {
-      vscode.window.showInformationMessage('No editor is active.');
-      return;
+  openNow(uri: vscode.Uri){
+    if (!uri || !uri.scheme) { // uri isn't a real URI. This means that the user called the action within the editor
+      let editor = vscode.window.activeTextEditor;
+      if (!editor || !editor.document.uri) {
+        vscode.window.showInformationMessage('No editor is active.');
+        return;
+      }
+      uri = editor.document.uri;
     }
 
     try {
-      open(decodeURIComponent(editor.document.uri.toString()));
+      opn(decodeURIComponent(uri.toString()));
     }
     catch (error) {
       vscode.window.showInformationMessage('Couldn\'t open file.');

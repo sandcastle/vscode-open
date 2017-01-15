@@ -20,7 +20,7 @@ class OpenController {
 
     let subscriptions: vscode.Disposable[] = [];
     let disposable = vscode.commands.registerCommand('extension.open', (uri: vscode.Uri) => {
-      this.openNow(uri);
+      this.open(uri);
     });
     subscriptions.push(disposable);
 
@@ -31,18 +31,25 @@ class OpenController {
     this._disposable.dispose();
   }
 
-  openNow(uri: vscode.Uri){
-    if (!uri || !uri.scheme) { // uri isn't a real URI. This means that the user called the action within the editor
-      let editor = vscode.window.activeTextEditor;
-      if (!editor || !editor.document.uri) {
-        vscode.window.showInformationMessage('No editor is active.');
-        return;
-      }
-      uri = editor.document.uri;
+  private open(uri: Uri){
+
+    if (uri && uri.scheme) {
+      this.openFile(uri.toString());
+      return;
     }
 
+    let editor = vscode.window.activeTextEditor;
+    if (editor && editor.document.uri) {
+      this.openFile(editor.document.uri.toString());
+      return;
+    }
+
+    vscode.window.showInformationMessage('No editor is active.');
+  }
+
+  private openFile(uri: string) {
     try {
-      opn(decodeURIComponent(uri.toString()));
+      opn(decodeURIComponent(uri));
     }
     catch (error) {
       vscode.window.showInformationMessage('Couldn\'t open file.');

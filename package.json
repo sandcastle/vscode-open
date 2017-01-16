@@ -2,7 +2,7 @@
   "name": "vscode-open",
   "displayName": "Open",
   "description": "Opens the current file with the default for the OS",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "icon": "open.png",
   "publisher": "sandcastle",
   "engines": {
@@ -14,12 +14,10 @@
   },
   "keywords": [
     "open",
-    "load",
     "file",
     "browser",
     "display",
-    "vscode",
-    "extension"
+    "vscode"
   ],
   "homepage": "https://github.com/sandcastle/vscode-open",
   "bugs": {
@@ -50,8 +48,8 @@
     }]
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
+    "vscode:prepublish": "node ./node_modules/.bin/tsc -p ./",
+    "compile": "node ./node_modules/.bin/tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "tslint": "tslint -c tslint.json src/extension.ts"
   },

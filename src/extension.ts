@@ -31,7 +31,7 @@ class OpenController {
     this._disposable.dispose();
   }
 
-  private open(uri: Uri){
+  private open(uri: vscode.Uri){
 
     if (uri && uri.scheme) {
       this.openFile(uri.toString());

@@ -69,15 +69,14 @@
   },
   "devDependencies": {
     "@types/node": "^12.14.1",
-    "@types/opn": "^3.0.28",
     "@types/vscode": "^1.50.0",
-    "@typescript-eslint/eslint-plugin": "^2.18.0",
-    "@typescript-eslint/parser": "^2.18.0",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.22.0",
     "typescript": "^4.2.3"
   },
   "dependencies": {
     "node": "^12.14.1",
-    "opn": "^4.0.2"
+    "open": "^8.0.2"
   }
 }

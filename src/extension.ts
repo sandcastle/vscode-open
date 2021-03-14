@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import opn = require('opn');
+import opn = require('open');
 
 /**
  * Activates the extension.

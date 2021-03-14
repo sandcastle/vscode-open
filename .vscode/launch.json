@@ -10,7 +10,7 @@
       "stopOnEntry": false,
       "sourceMaps": true,
       "outFiles": ["${workspaceRoot}/out/src/**/*.js"],
-      "preLaunchTask": "npm"
+      "preLaunchTask": "${defaultBuildTask}",
     },
     {
       "name": "Launch Tests",
@@ -21,7 +21,7 @@
       "stopOnEntry": false,
       "sourceMaps": true,
       "outFiles": ["${workspaceRoot}/out/test/**/*.js"],
-      "preLaunchTask": "npm"
+      "preLaunchTask": "${defaultBuildTask}",
     }
   ]
 }

@@ -2,11 +2,11 @@
   "name": "vscode-open",
   "displayName": "Open",
   "description": "Opens the current file with the default for the OS",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "icon": "open.png",
   "publisher": "sandcastle",
   "engines": {
-    "vscode": "^0.10.7"
+    "vscode": "^1.50.0"
   },
   "repository": {
     "type": "git",
@@ -27,39 +27,57 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onCommand:workbench.action.files.openFileWithDefaultApplication"
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "commands": [{
-      "command": "extension.open",
-      "title": "Open with default application"
-    }],
+    "commands": [
+      {
+        "command": "workbench.action.files.openFileWithDefaultApplication",
+        "title": "Open with default application"
+      }
+    ],
     "menus": {
-      "explorer/context": [{
-        "command": "extension.open",
-        "group": "navigation"
-      }]
+      "explorer/context": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "group": "navigation",
+          "when": "explorerResourceIsFolder == false"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "when": "resourceSet"
+        }
+      ]
     },
-    "keybindings": [{
-      "command": "extension.open",
-      "key": "ctrl+alt+o",
-      "mac": "cmd+alt+o"
-    }]
+    "keybindings": [
+      {
+        "command": "workbench.action.files.openFileWithDefaultApplication",
+        "key": "ctrl+alt+o",
+        "mac": "cmd+alt+o"
+      }
+    ]
   },
   "scripts": {
-    "vscode:prepublish": "node ./node_modules/.bin/tsc -p ./",
-    "compile": "node ./node_modules/.bin/tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "tslint": "tslint -c tslint.json src/extension.ts"
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile && npm run lint"
   },
   "devDependencies": {
-    "@types/node": "^7.0.0",
+    "@types/node": "^12.14.1",
     "@types/opn": "^3.0.28",
-    "typescript": "^2.1.5",
-    "vscode": "^1.0.3"
+    "@types/vscode": "^1.50.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^7.22.0",
+    "typescript": "^4.2.3"
   },
   "dependencies": {
+    "node": "^12.14.1",
     "opn": "^4.0.2"
   }
 }

@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
-const opn = require('opn');
+import opn = require('opn');
 
 /**
  * Activates the extension.
  */
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
   const controller = new OpenController();
   context.subscriptions.push(controller);
 }
@@ -12,14 +12,14 @@ export function activate(context: vscode.ExtensionContext) {
 /**
  * Controller for handling file opens.
  */
-class OpenController {
+class OpenController implements vscode.Disposable {
 
   private _disposable: vscode.Disposable;
 
   constructor() {
 
-    let subscriptions: vscode.Disposable[] = [];
-    let disposable = vscode.commands.registerCommand('extension.open', (uri: vscode.Uri) => {
+    const subscriptions: vscode.Disposable[] = [];
+    const disposable = vscode.commands.registerCommand('workbench.action.files.openFileWithDefaultApplication', (uri: vscode.Uri | undefined) => {
       this.open(uri);
     });
     subscriptions.push(disposable);
@@ -27,27 +27,27 @@ class OpenController {
     this._disposable = vscode.Disposable.from(...subscriptions);
   }
 
-  dispose() {
+  dispose(): void {
     this._disposable.dispose();
   }
 
-  private open(uri: vscode.Uri){
+  private open(uri: vscode.Uri | undefined): void {
 
-    if (uri && uri.scheme) {
+    if (uri?.scheme) {
       this.openFile(uri.toString());
       return;
     }
 
-    let editor = vscode.window.activeTextEditor;
-    if (editor && editor.document.uri) {
+    const editor = vscode.window.activeTextEditor;
+    if (editor?.document.uri) {
       this.openFile(editor.document.uri.toString());
       return;
     }
 
-    vscode.window.showInformationMessage('No editor is active.');
+    vscode.window.showInformationMessage('No editor is active. Select an editor or a file in the Explorer view.');
   }
 
-  private openFile(uri: string) {
+  private openFile(uri: string): void {
     try {
       opn(decodeURIComponent(uri));
     }

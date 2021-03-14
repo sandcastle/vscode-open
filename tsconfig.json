@@ -6,7 +6,8 @@
     "sourceMap": true,
     "lib": [
       "es2015"
-    ]
+    ],
+		"strict": true   /* enable all strict type-checking options */
   },
   "typeRoots": [
     "../node_modules/@types"

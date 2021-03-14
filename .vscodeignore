@@ -8,3 +8,4 @@ src/**
 tsconfig.json
 package-lock.json
 .eslintrc.js
+.vscode-test

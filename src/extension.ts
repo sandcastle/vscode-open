@@ -19,7 +19,7 @@ class OpenController implements vscode.Disposable {
   constructor() {
 
     const subscriptions: vscode.Disposable[] = [];
-    const disposable = vscode.commands.registerCommand('workbench.action.files.openFileWithDefaultApplication', (uri: vscode.Uri | undefined) => {
+    const disposable = vscode.commands.registerCommand('openWithDefaultApplication.open', (uri: vscode.Uri | undefined) => {
       this.open(uri);
     });
     subscriptions.push(disposable);

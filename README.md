@@ -1,6 +1,8 @@
-# vscode-open
+# Open with Default Application (WSL supported)
 
-> Opens files using the OS's default program for the file type
+> Opens files using the OS's (in Windows for WSL) default program for the file type
+
+ - This is forked version of [open by sandcastle](https://marketplace.visualstudio.com/items?itemName=sandcastle.vscode-open) with WSL support added
 
 ## Install
 

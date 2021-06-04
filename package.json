@@ -2,7 +2,7 @@
   "name": "vscode-open-wsl",
   "displayName": "Open (WSL support)",
   "description": "Opens the current file with the default application for the OS (in Windows for WSL)",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "icon": "open.png",
   "publisher": "NoThlnG",
   "engines": {

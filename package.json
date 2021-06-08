@@ -1,16 +1,16 @@
 {
-  "name": "vscode-open",
-  "displayName": "Open",
-  "description": "Opens the current file with the default for the OS",
-  "version": "0.2.0",
+  "name": "vscode-open-wsl",
+  "displayName": "Open (WSL support)",
+  "description": "Opens the current file with the default application for the OS (in Windows for WSL)",
+  "version": "0.2.2",
   "icon": "open.png",
-  "publisher": "sandcastle",
+  "publisher": "NoThlnG",
   "engines": {
     "vscode": "^1.50.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sandcastle/vscode-open"
+    "url": "https://github.com/Indlgo/vscode-open"
   },
   "keywords": [
     "open",
@@ -19,42 +19,42 @@
     "display",
     "vscode"
   ],
-  "homepage": "https://github.com/sandcastle/vscode-open",
+  "homepage": "https://github.com/Indlgo/vscode-open",
   "bugs": {
-    "url": "https://github.com/sandcastle/vscode-open/issues"
+    "url": "https://github.com/Indlgo/vscode-open/issues"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:workbench.action.files.openFileWithDefaultApplication"
+    "onCommand:openWithDefaultApplication.open"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "workbench.action.files.openFileWithDefaultApplication",
+        "command": "openWithDefaultApplication.open",
         "title": "Open with default application"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "command": "openWithDefaultApplication.open",
           "group": "navigation",
           "when": "explorerResourceIsFolder == false"
         }
       ],
       "commandPalette": [
         {
-          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "command": "openWithDefaultApplication.open",
           "when": "resourceSet"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "workbench.action.files.openFileWithDefaultApplication",
+        "command": "openWithDefaultApplication.open",
         "key": "ctrl+alt+o",
         "mac": "cmd+alt+o"
       }

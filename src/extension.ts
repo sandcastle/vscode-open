@@ -19,7 +19,7 @@ class OpenController implements vscode.Disposable {
   constructor() {
 
     const subscriptions: vscode.Disposable[] = [];
-    const disposable = vscode.commands.registerCommand('workbench.action.files.openFileWithDefaultApplication', (uri: vscode.Uri | undefined) => {
+    const disposable = vscode.commands.registerCommand('openWithDefaultApplication.open', (uri: vscode.Uri | undefined) => {
       this.open(uri);
     });
     subscriptions.push(disposable);
@@ -31,15 +31,32 @@ class OpenController implements vscode.Disposable {
     this._disposable.dispose();
   }
 
+  private openWslFile(uri: vscode.Uri): boolean {
+    if (vscode.env?.remoteName === 'wsl' && process.env?.WSL_DISTRO_NAME) {
+      const baseUri = vscode.Uri.parse(`${uri.scheme}://${vscode.env.remoteName}\$/${process.env.WSL_DISTRO_NAME}`)
+      this.openFile(vscode.Uri.joinPath(baseUri, uri.fsPath).toString());
+      return true;
+    }
+    return false;
+  }
+
   private open(uri: vscode.Uri | undefined): void {
 
     if (uri?.scheme) {
+      if (this.openWslFile(uri)) {
+        return;
+      }
+
       this.openFile(uri.toString());
       return;
     }
 
     const editor = vscode.window.activeTextEditor;
     if (editor?.document.uri) {
+      if (this.openWslFile(editor.document.uri)) {
+        return;
+      }
+
       this.openFile(editor.document.uri.toString());
       return;
     }

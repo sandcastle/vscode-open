@@ -45,6 +45,18 @@
           "when": "explorerResourceIsFolder == false"
         }
       ],
+      "editor/context": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "group": "navigation"
+        }
+      ],
       "commandPalette": [
         {
           "command": "workbench.action.files.openFileWithDefaultApplication",

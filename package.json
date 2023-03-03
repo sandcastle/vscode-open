@@ -2,11 +2,11 @@
   "name": "vscode-open",
   "displayName": "Open",
   "description": "Opens the current file with the default for the OS",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "icon": "open.png",
   "publisher": "sandcastle",
   "engines": {
-    "vscode": "^1.50.0"
+    "vscode": "^1.70.0"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,10 @@
   "categories": [
     "Other"
   ],
-  "main": "./out/src/extension",
+  "activationEvents": [
+    "onCommand:workbench.action.files.openFileWithDefaultApplication"
+  ],
+  "main": "./out/main",
   "contributes": {
     "commands": [
       {
@@ -58,25 +61,29 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./",
-    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run esbuild-base -- --sourcemap --watch",
+    "compile": "npm run esbuild-base -- --sourcemap",
     "lint": "eslint src --ext ts",
-    "pretest": "npm run compile && npm run lint"
+    "pretest": "npm run compile && npm run lint",
+    "package": "vsce package"
   },
   "devDependencies": {
-    "@types/node": "^12.14.1",
+    "@types/node": "^18.13.0",
     "@types/vscode": "^1.70.0",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
+    "esbuild": "^0.17.10",
     "eslint": "^7.22.0",
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "node": "^12.14.1",
-    "open": "^8.4.2"
+    "node": "^18.13.0",
+    "open": "^8.4.2",
+    "vsce": "^2.15.0"
   },
   "volta": {
-    "node": "12.22.12"
+    "node": "18.13.0"
   }
 }

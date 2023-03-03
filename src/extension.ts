@@ -72,9 +72,11 @@ class OpenController implements vscode.Disposable {
           }
         });
       });
-    } catch (error: any) {
+    } catch (error) {
       vscode.window.showInformationMessage("Couldn't open file.");
-      console.error(error?.stack);
+      if (error instanceof Error) {
+        console.error(error.stack);
+      }
     }
   }
 }

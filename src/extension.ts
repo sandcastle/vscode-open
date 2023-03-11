@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
-import opn = require("open");
+import * as vscode from 'vscode';
+import opn = require('open');
 
 /**
  * Activates the extension.
@@ -13,16 +13,15 @@ export function activate(context: vscode.ExtensionContext): void {
  * Controller for handling file opens.
  */
 class OpenController implements vscode.Disposable {
+
   private _disposable: vscode.Disposable;
 
   constructor() {
+
     const subscriptions: vscode.Disposable[] = [];
-    const disposable = vscode.commands.registerCommand(
-      "workbench.action.files.openFileWithDefaultApplication",
-      (uri: vscode.Uri | undefined) => {
-        this.open(uri);
-      }
-    );
+    const disposable = vscode.commands.registerCommand('workbench.action.files.openFileWithDefaultApplication', (uri: vscode.Uri | undefined) => {
+      this.open(uri);
+    });
     subscriptions.push(disposable);
 
     this._disposable = vscode.Disposable.from(...subscriptions);
@@ -33,6 +32,7 @@ class OpenController implements vscode.Disposable {
   }
 
   private open(uri: vscode.Uri | undefined): void {
+
     if (uri?.scheme) {
       console.log("Opening from uri", uri.toString());
       this.openFile(uri.toString());
@@ -57,9 +57,7 @@ class OpenController implements vscode.Disposable {
       return;
     }
 
-    vscode.window.showInformationMessage(
-      "No editor is active. Select an editor or a file in the Explorer view."
-    );
+    vscode.window.showInformationMessage('No editor is active. Select an editor or a file in the Explorer view.');
   }
 
   private openFile(uri: string): void {

@@ -34,13 +34,26 @@ class OpenController implements vscode.Disposable {
   private open(uri: vscode.Uri | undefined): void {
 
     if (uri?.scheme) {
+      console.log("Opening from uri", uri.toString());
       this.openFile(uri.toString());
       return;
     }
 
     const editor = vscode.window.activeTextEditor;
     if (editor?.document.uri) {
+      console.log("Opening from editor", editor.document.uri.toString());
       this.openFile(editor.document.uri.toString());
+      return;
+    }
+
+    const { uri: tab_uri } = vscode.window.tabGroups.activeTabGroup.activeTab
+      ?.input as {
+      uri?: vscode.Uri;
+    };
+
+    if (tab_uri) {
+      console.log("Opening from tab", tab_uri.toString());
+      this.openFile(tab_uri.toString());
       return;
     }
 
@@ -49,11 +62,19 @@ class OpenController implements vscode.Disposable {
 
   private openFile(uri: string): void {
     try {
-      opn(decodeURIComponent(uri));
-    }
-    catch (error) {
-      vscode.window.showInformationMessage('Couldn\'t open file.');
-      console.error(error.stack);
+      const p = opn(decodeURIComponent(uri));
+      p.then((p) => {
+        p.on("exit", (n) => {
+          if (n != 0) {
+            vscode.window.showInformationMessage("Couldn't open file.");
+          }
+        });
+      });
+    } catch (error) {
+      vscode.window.showInformationMessage("Couldn't open file.");
+      if (error instanceof Error) {
+        console.error(error.stack);
+      }
     }
   }
 }

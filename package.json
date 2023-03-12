@@ -6,7 +6,7 @@
   "icon": "open.png",
   "publisher": "sandcastle",
   "engines": {
-    "vscode": "^1.50.0"
+    "vscode": "^1.67.0"
   },
   "repository": {
     "type": "git",
@@ -65,11 +65,12 @@
     "watch": "tsc -watch -p ./",
     "compile": "tsc -p ./",
     "lint": "eslint src --ext ts",
-    "pretest": "npm run compile && npm run lint"
+    "pretest": "npm run compile && npm run lint",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^12.14.1",
-    "@types/vscode": "^1.50.0",
+    "@types/vscode": "^1.67.0",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.22.0",
@@ -77,6 +78,10 @@
   },
   "dependencies": {
     "node": "^12.14.1",
-    "open": "^8.0.2"
+    "open": "^8.4.2",
+    "vsce": "^1.103.1"
+  },
+  "volta": {
+    "node": "12.22.12"
   }
 }

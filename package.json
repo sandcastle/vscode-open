@@ -1,7 +1,7 @@
 {
   "name": "vscode-open",
   "displayName": "Open",
-  "description": "Opens the current file with the default for the OS",
+  "description": "Opens the current file or folder with the default for the OS",
   "version": "0.3.0",
   "icon": "open.png",
   "publisher": "sandcastle",
@@ -27,7 +27,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:workbench.action.files.openFileWithDefaultApplication"
+    "*"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -42,7 +42,7 @@
         {
           "command": "workbench.action.files.openFileWithDefaultApplication",
           "group": "navigation",
-          "when": "explorerResourceIsFolder == false"
+          "when": "(vscode-open.allowContextMenuForFile && !explorerResourceIsFolder) || (vscode-open.allowContextMenuForFolder && explorerResourceIsFolder)"
         }
       ],
       "commandPalette": [
@@ -58,7 +58,22 @@
         "key": "ctrl+alt+o",
         "mac": "cmd+alt+o"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Open with default application",
+      "properties": {
+        "vscode-open.contextMenu.showForFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show `Open with default application` for files"
+        },
+        "vscode-open.contextMenu.showForFolders": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to show `Open with default application` for folders"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

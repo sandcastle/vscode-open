@@ -42,7 +42,7 @@
         {
           "command": "workbench.action.files.openFileWithDefaultApplication",
           "group": "navigation",
-          "when": "(vscode-open.allowContextMenuForFile && !explorerResourceIsFolder) || (vscode-open.allowContextMenuForFolder && explorerResourceIsFolder)"
+          "when": "(vscode-open:allowContextMenuForFile && !explorerResourceIsFolder) || (vscode-open:allowContextMenuForFolder && explorerResourceIsFolder)"
         }
       ],
       "commandPalette": [

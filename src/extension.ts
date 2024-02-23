@@ -25,6 +25,23 @@ class OpenController implements vscode.Disposable {
     subscriptions.push(disposable);
 
     this._disposable = vscode.Disposable.from(...subscriptions);
+    function setContext() {
+      const config = vscode.workspace.getConfiguration('vscode-open');
+      const showForFiles: boolean = config.get('contextMenu.showForFiles') ?? true;
+      const showForFolders: boolean = config.get('contextMenu.showForFolders') ?? false;
+      vscode.commands.executeCommand(
+        'setContext',
+        'vscode-open:allowContextMenuForFile',
+        showForFiles
+      );
+      vscode.commands.executeCommand(
+        'setContext',
+        'vscode-open:allowContextMenuForFolder',
+        showForFolders
+      );
+    }
+    setContext();
+    vscode.workspace.onDidChangeConfiguration(setContext)
   }
 
   dispose(): void {

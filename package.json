@@ -2,7 +2,7 @@
   "name": "vscode-open",
   "displayName": "Open",
   "description": "Opens the current file or folder with the default for the OS",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "icon": "open.png",
   "publisher": "sandcastle",
   "engines": {
@@ -15,9 +15,11 @@
   "keywords": [
     "open",
     "file",
+    "folder",
     "browser",
     "display",
-    "vscode"
+    "vscode",
+    "default application"
   ],
   "homepage": "https://github.com/sandcastle/vscode-open",
   "bugs": {
@@ -27,7 +29,7 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onCommand:workbench.action.files.openFileWithDefaultApplication"
   ],
   "main": "./out/src/extension",
   "contributes": {

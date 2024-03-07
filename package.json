@@ -47,6 +47,18 @@
           "when": "(vscode-open:allowContextMenuForFile && !explorerResourceIsFolder) || (vscode-open:allowContextMenuForFolder && explorerResourceIsFolder)"
         }
       ],
+      "editor/context": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "workbench.action.files.openFileWithDefaultApplication",
+          "group": "navigation"
+        }
+      ],
       "commandPalette": [
         {
           "command": "workbench.action.files.openFileWithDefaultApplication",
